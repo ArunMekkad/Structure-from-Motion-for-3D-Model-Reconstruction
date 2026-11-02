@@ -24,7 +24,28 @@ The pipeline utilizes **SuperPoint** for dense, repeatable feature extraction an
 2. **Data Loading:** Mounts Google Drive and defines directory paths for the source images and the local feature cache.
 3. **Feature Extraction:** Iterates through the image dataset, extracts raw features using SuperPoint, removes the batch dimension for efficiency, and saves the cleaned tensors to the cache.
 4. **Feature Matching:** Loads the cached features, structures them into paired permutations with a defined temporal window (e.g., matching image $i$ with images $i+1$ to $i+6$), and processes them through the LightGlue matcher.
-5. **Verification & Visualization:** Filters matches based on an inlier threshold and plots the connected keypoints to visually verify accuracy. 
+5. **Verification & Visualization:** Filters matches based on an inlier threshold and plots the connected keypoints to visually verify accuracy.
+
+## Results
+
+### Feature Extraction and Matching
+Visualization of robust keypoint matching across consecutive image pairs using SuperPoint and LightGlue. 
+
+![SuperPoint and LightGlue Feature Matching](images/SuperPointMatching.png)
+
+---
+
+### 3D Reconstruction (Before Bundle Adjustment)
+The initial 3D point cloud and camera pose estimates prior to optimization. Notice the noise in the point cloud and the tightly clustered camera poses.
+
+![Reconstruction Before Bundle Adjustment](images/Budha_before_bundle_adjustment.png)
+
+---
+
+### Final 3D Reconstruction (After Bundle Adjustment)
+The optimized 3D structure and refined camera trajectories after applying Bundle Adjustment. The geometric structure is significantly cleaner, and the calculated camera poses accurately reflect the camera's movement around the object.
+
+![Reconstruction After Bundle Adjustment](images/Budha_after_bundle_adjustment.png)
 
 ## Setup & Usage
 Ensure you have the required dataset structure in your Google Drive before running the notebook. 
